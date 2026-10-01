@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>My Alarm</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <span class="logo"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M5 3 2 6M19 3l3 3"/></svg></span>
+      My Alarm
+    </div>
+    <button class="icon-btn" id="themeBtn" aria-label="Ganti tema"><svg viewBox="0 0 24 24" id="themeIcon"></svg></button>
+  </header>
+
+  <section class="hero" id="hero">
+    <div id="clock">00:00:00</div>
+    <div id="date"></div>
+    <button class="btn primary" id="addBtn">+ Tambah Alarm</button>
+  </section>
+
+  <div class="banner" id="notifBanner" hidden>
+    <span id="notifText">Izinkan notifikasi agar alarm tetap muncul meski tab ada di latar belakang.</span>
+    <button class="btn primary" id="notifBtn">Izinkan Notifikasi</button>
+  </div>
+
+  <h2>Daftar Alarm</h2>
+  <div id="list"></div>
+</div>
+
+<!-- Modal tambah/edit -->
+<div class="overlay" id="formOverlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true">
+    <h3 id="formTitle">Tambah Alarm</h3>
+    <label class="f" for="fTime">Waktu (jam : menit)</label>
+    <input type="time" id="fTime" required>
+    <label class="f" for="fName">Nama alarm</label>
+    <input type="text" id="fName" maxlength="40" placeholder="Contoh: Bangun pagi">
+    <label class="f" for="fRepeat">Pengulangan</label>
+    <select id="fRepeat">
+      <option value="once">Sekali</option>
+      <option value="daily">Setiap hari</option>
+      <option value="custom">Hari tertentu</option>
+    </select>
+    <div class="days" id="fDays" hidden></div>
+    <div class="row"><span>Aktifkan alarm</span><button type="button" class="switch" id="fEnabled" role="switch" aria-checked="true" aria-label="Aktif"></button></div>
+    <div class="err" id="fErr"></div>
+    <div class="foot">
+      <button class="btn ghost" id="cancelBtn">Batal</button>
+      <button class="btn primary" id="saveBtn">Simpan</button>
+    </div>
+  </div>
+</div>
+
+<!-- Overlay alarm berbunyi -->
+<div class="overlay" id="ringOverlay" hidden>
+  <div class="modal ringbox" role="alertdialog" aria-modal="true">
+    <div class="bell"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg></div>
+    <div class="rt" id="ringTime">00:00</div>
+    <div class="rn" id="ringName">Alarm</div>
+    <div class="foot col">
+      <button class="btn primary" id="snoozeBtn">Snooze 5 Menit</button>
+      <button class="btn danger" id="stopBtn">Matikan Alarm</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
